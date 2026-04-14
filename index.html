@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#16324f" />
+    <meta name="description" content="Omnia Ops internal job tracker" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Omnia Ops" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Omnia Ops</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Omnia Ops</p>
+          <h1>Omnia Ops</h1>
+          <p class="subtitle">Internal Job Tracker</p>
+        </div>
+        <button
+          id="new-job-button"
+          class="primary-button"
+          type="button"
+          aria-controls="job-form-panel"
+          aria-expanded="false"
+        >
+          + New Job
+        </button>
+      </header>
+
+      <section class="filters" aria-label="Job filters">
+        <label class="filter-chip" for="status-filter">
+          <span class="filter-label">Status</span>
+          <select class="filter-value" id="status-filter" name="status-filter">
+            <option value="all">All statuses</option>
+          </select>
+        </label>
+        <label class="filter-chip" for="staff-filter">
+          <span class="filter-label">Staff</span>
+          <select class="filter-value" id="staff-filter" name="staff-filter">
+            <option value="all">All staff</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="jobs-section" aria-labelledby="jobs-heading">
+        <div class="section-heading">
+          <h2 id="jobs-heading">Today's Jobs</h2>
+          <p id="job-count">3 active items</p>
+        </div>
+
+        <div class="job-list" id="job-list">
+          <article class="job-card" data-status="Pending" data-staff="James">
+            <div class="job-card-top">
+              <div>
+                <h3>Check warehouse delivery</h3>
+              </div>
+              <span class="status-badge status-pending">Pending</span>
+            </div>
+            <dl class="job-details">
+              <div>
+                <dt>Assigned</dt>
+                <dd>James</dd>
+              </div>
+              <div>
+                <dt>Due</dt>
+                <dd>Today, 09:30</dd>
+              </div>
+            </dl>
+            <p class="job-note">
+              Confirm stock arrival and report any missing items before sign-off.
+            </p>
+          </article>
+
+          <article class="job-card" data-status="In Progress" data-staff="Mary">
+            <div class="job-card-top">
+              <div>
+                <h3>Site inspection follow-up</h3>
+              </div>
+              <span class="status-badge status-progress">In Progress</span>
+            </div>
+            <dl class="job-details">
+              <div>
+                <dt>Assigned</dt>
+                <dd>Mary</dd>
+              </div>
+              <div>
+                <dt>Due</dt>
+                <dd>Today, 13:00</dd>
+              </div>
+            </dl>
+            <p class="job-note">
+              Capture notes from the morning visit and prepare the handover
+              summary.
+            </p>
+          </article>
+
+          <article class="job-card" data-status="Done" data-staff="Team A">
+            <div class="job-card-top">
+              <div>
+                <h3>Close weekly cleaning checklist</h3>
+              </div>
+              <span class="status-badge status-done">Done</span>
+            </div>
+            <dl class="job-details">
+              <div>
+                <dt>Assigned</dt>
+                <dd>Team A</dd>
+              </div>
+              <div>
+                <dt>Due</dt>
+                <dd>Today, 07:45</dd>
+              </div>
+            </dl>
+            <p class="job-note">
+              Checklist submitted and area confirmed ready for the next shift.
+            </p>
+          </article>
+        </div>
+        <p id="empty-state-message" hidden>No jobs match the current filters.</p>
+      </section>
+
+      <section
+        class="job-form-panel"
+        id="job-form-panel"
+        hidden
+        aria-label="New job form"
+      >
+        <div class="section-heading">
+          <h2>New Job</h2>
+          <p>Add one job at a time</p>
+        </div>
+        <form class="job-form" id="job-form">
+          <label>
+            <span>Job title</span>
+            <input
+              type="text"
+              name="title"
+              placeholder="Enter job title"
+              required
+            />
+          </label>
+          <label>
+            <span>Assigned staff</span>
+            <input
+              type="text"
+              name="staff"
+              placeholder="Enter staff name"
+              required
+            />
+          </label>
+          <label>
+            <span>Status</span>
+            <select name="status">
+              <option>Pending</option>
+              <option>In Progress</option>
+              <option>Done</option>
+            </select>
+          </label>
+          <label>
+            <span>Date</span>
+            <input
+              type="text"
+              name="date"
+              placeholder="DD-MM-YYYY"
+              inputmode="numeric"
+              autocapitalize="off"
+              spellcheck="false"
+              maxlength="10"
+              pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}"
+              required
+            />
+          </label>
+          <label>
+            <span>Notes</span>
+            <textarea
+              name="notes"
+              rows="4"
+              placeholder="Add a short note"
+              maxlength="180"
+              required
+            ></textarea>
+          </label>
+          <button class="secondary-button" type="submit">Save Job</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
